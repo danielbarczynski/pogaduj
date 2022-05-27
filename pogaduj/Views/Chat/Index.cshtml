@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MessageModel>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<h1>Pokój nr: 1</h1>
+
+<div class="d-flex flex-column" style="height: 710px;">
+    <div class="flex-grow-1 card mb-1 bg-dark">
+        <div class="card-body p-2 overflow-auto" id="messages" style="max-height: 690px">
+               @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="px-4" style="font-size: 20px; color: gray;">Połączono z użytkownikiem, przywitaj się!</div>
+            }
+            else
+            {
+                <div class="px-4" style="font-size: 20px; color: gray;">Nie połączono z nikim</div>
+            }
+            @foreach (var message in Model)
+            {
+                <div class="p-2">@message.Username: @message.Message</div>
+            }
+
+        </div>
+    </div>
+     @if (SignInManager.IsSignedIn(User))
+        {
+             <div class="flex-grow-0">
+        <form class="form-inline" id="message-form">
+            <div class="input-group">
+                <input rows="3" type="text" class="form-control bg-dark text-light" name="message" autocomplete="off" placeholder="Wiadomość"/>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-info text-light p-2" style="width: 120px; font-size: 18px;"> Wyślij </button>
+                </div>
+            </div>
+        </form>
+    </div>
+        }
+        else
+        {
+            <div class="text-center" style="font-size: 25px;">
+                <a style="color: red;" asp-area="Identity" asp-page="/Account/Login">Zaloguj się</a> aby móc porozmawiać
+            </div>
+        }
+
+</div>
+
+<script src="~/lib/aspnet-signalr/signalr.js"></script>
+<script src="~/js/chat.js"></script>

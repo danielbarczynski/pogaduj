@@ -1,0 +1,36 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #36393f;
+    color: snow;
+}
+
+a, .nav-link{
+    color: snow;
+    text-decoration: none;
+}
+
+a:hover, .nav-link:hover {
+   color: snow;
+   text-decoration: none;
+   opacity: 80%;
+}
+
+/*.card{
+    background-color: #18242ef6;
+    
+}*/
