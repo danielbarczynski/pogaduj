@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using pogaduj.Models;
 
 namespace pogaduj.Data
 {
@@ -7,7 +8,8 @@ namespace pogaduj.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {
-        }
+        { }
+        public DbSet<RoomModel> Rooms { get; set; }
     }
 }
+

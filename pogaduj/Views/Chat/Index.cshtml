@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 
-<h1>Pokój nr: 1</h1>
+<h1>Pokój nr: @Context.Request.RouteValues["id"]</h1>
 
 <div class="d-flex flex-column" style="height: 710px;">
     <div class="flex-grow-1 card mb-1 bg-dark">

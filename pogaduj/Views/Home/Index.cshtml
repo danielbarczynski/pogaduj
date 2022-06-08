@@ -1,8 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+﻿<div class="text-center">
+    <h1>Witaj na pogaduj.pl!</h1>
+    @{Random random = new Random();}
+    <p class="mt-4"><a asp-controller="Chat" asp-action="Index" asp-route-id="@random.Next(1,4)" class="btn btn-primary"> Dołącz do pokoju </a> </p> 
 </div>

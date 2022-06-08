@@ -30,6 +30,9 @@ a:hover, .nav-link:hover {
    opacity: 80%;
 }
 
+label{
+    color: deeppink;
+}
 /*.card{
     background-color: #18242ef6;
     
