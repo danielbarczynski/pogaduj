@@ -17,15 +17,12 @@ namespace pogaduj.Controllers
         public IActionResult Index(int id)
         {
             _applicationDbContext.Rooms.ToList();
-            var room = _applicationDbContext.Rooms.FirstOrDefault(x => x.Id == id);
-            var messages = _repository.GetAll();
-            return View(messages);
-        }
-     
-        public IActionResult Room(int id)
-        {
-            _applicationDbContext.Rooms.ToList();
-            var room = _applicationDbContext.Rooms.FirstOrDefault(x => x.Id == id);
+            var room = _applicationDbContext.Rooms.Find(id);
+            if (room == null)
+            {
+                return NotFound();
+            }
+            //var messages = _repository.GetAll();
             return View(room);
         }
     }
