@@ -1,5 +1,10 @@
 ﻿<div class="text-center">
     <h1>Witaj na pogaduj.pl!</h1>
-    @{Random random = new Random();}
-    <p class="mt-4"><a asp-controller="Chat" asp-action="Index" asp-route-id="@random.Next(1,4)" class="btn btn-primary"> Dołącz do pokoju </a> </p> 
+    @{
+        Random random = new Random();
+        var newId = random.Next(1, 4);  
+    }
+    <p class="mt-4"><a asp-controller="Chat" asp-action="Index" asp-route-id="@newId" class="btn btn-primary" id="@newId" > Dołącz do pokoju </a> </p> 
 </div>
+
+<script src="~/js/chat.js"></script>

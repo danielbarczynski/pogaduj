@@ -13,19 +13,42 @@ namespace pogaduj.Hubs
         {
             _repository = repository;
         }
-        public async Task SendMessage(string message)
+
+        public Task JoinRoom(string roomName)
+        {
+            return Groups.AddToGroupAsync(Context.ConnectionId, roomName);
+        }
+
+        public Task LeaveRoom(string roomName)
+        {
+            return Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
+        }
+
+        public Task SendMessage(string message, string roomName)
         {
             var currentUser = Context.User.Identity.Name;
-            await Clients.All.SendAsync("OnMessageSent", currentUser, message);
+            return Clients.Group(roomName).SendAsync("OnMessageSent", currentUser, message);
 
-            var messageEntity = new MessageModel()
-            {
-                Username = currentUser,
-                Message = message,
-            };
+            //var messageEntity = new MessageModel()
+            //{
+            //    Username = currentUser,
+            //    Message = message,
+            //};
 
-            _repository.Add(messageEntity);
+            //_repository.Add(messageEntity);
         }
+        //public override async Task OnConnectedAsync()
+        //{
+        //    await Clients.All.SendAsync("UserConnected", Context.ConnectionId);
+        //    await base.OnConnectedAsync();
+        //}
+
+        //public override async Task OnDisconnectedAsync(Exception e)
+        //{
+        //    await Clients.All.SendAsync("UserConnected", Context.ConnectionId);
+        //    await base.OnDisconnectedAsync(e);
+        //}
+
     }
 
 }
