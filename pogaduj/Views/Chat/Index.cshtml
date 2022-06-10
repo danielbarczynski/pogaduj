@@ -1,8 +1,8 @@
-﻿@model IEnumerable<MessageModel>
+﻿@model RoomModel
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 
-<h1>Pokój nr: @Context.Request.RouteValues["id"]</h1>
+<h1>Pokój nr: @Html.DisplayFor(x=> x.Id)</h1>
 
 <div class="d-flex flex-column" style="height: 710px;">
     <div class="flex-grow-1 card mb-1 bg-dark">
@@ -15,10 +15,10 @@
             {
                 <div class="px-4" style="font-size: 20px; color: gray;">Nie połączono z nikim</div>
             }
-            @foreach (var message in Model)
+         @*   @foreach (var message in Model)
             {
                 <div class="p-2">@message.Username: @message.Message</div>
-            }
+            }*@
 
         </div>
     </div>
