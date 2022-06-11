@@ -40,5 +40,14 @@ formElement.addEventListener("submit", (event) => {
 
 document.getElementById("joinRoom").addEventListener("click", (event) => {
   connection.invoke("JoinRoom", id);
+  connection.invoke("JoinMessage", id);
   event.preventDefault();
 });
+
+document
+  .getElementById("leaveRoom")
+  .addEventListener(
+    "click",
+    connection.invoke("LeaveRoom", id),
+    connection.invoke("LeaveMessage", id)
+  );
