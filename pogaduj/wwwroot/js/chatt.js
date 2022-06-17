@@ -20,12 +20,12 @@ connection.on("OnMessageSent", (user, message) => {
 
 // Connection
 
-function startConnection() {
-  connection.start().catch(() => setTimeout(startConnection, 1000)); // retry starting connection
-}
+// function startConnection() {
+//   connection.start().catch(() => setTimeout(startConnection, 1000)); // retry starting connection
+// }
 
-connection.onclose(() => startConnection()); // reconnect if lost
-startConnection();
+// connection.onclose(() => startConnection()); // reconnect if lost
+// startConnection();
 
 // Sending messages
 
@@ -38,16 +38,19 @@ formElement.addEventListener("submit", (event) => {
   formElement.elements.message.value = "";
 });
 
-document.getElementById("joinRoom").addEventListener("click", (event) => {
-  connection.invoke("JoinRoom", id);
-  connection.invoke("JoinMessage", id);
-  event.preventDefault();
-});
-
 document
   .getElementById("leaveRoom")
   .addEventListener("click", () => {
     connection.invoke("LeaveRoom", id);
     connection.invoke("LeaveMessage", id);
   });
-  
+
+connection.start()
+  .then(function () {
+      connection.invoke("JoinRoom", id);
+      connection.invoke("JoinMessage", id);
+  })
+  .catch(function (err) {
+      console.log(err)
+  })
+
