@@ -14,22 +14,44 @@ namespace pogaduj.Controllers
             _repository = repository;
             _applicationDbContext = applicationDbContext;
         }
+        //public IActionResult Index(int id)
+        //{
+        //    _applicationDbContext.Rooms.ToList();
+        //    var room = _applicationDbContext.Rooms.Find(id);
+
+        //    if (room == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    //var messages = _repository.GetAll();
+        //    return View(room);
+        //}
+
         public IActionResult Index(int id)
         {
+            id++;
             _applicationDbContext.Rooms.ToList();
             var room = _applicationDbContext.Rooms.Find(id);
-            if (room == null)
+
+            if (room.User1 == false && room.User2 == false)
             {
-                return NotFound();
-            }
-            if (_applicationDbContext.Rooms.Any(x=>x.User1 == false && x.User2 == false))
-                {
                 room.User1 = true;
                 return View(room);
             }
-
-            //var messages = _repository.GetAll();
-            return View();
+            else if (room.User1 == true && room.User2 == false)
+            {
+                room.User2 = true;
+                return View(room);
+            }
+            else if (room.User1 == true && room.User2 == true)
+            {
+                return RedirectToAction("Index", new { id });
+            }
+            return NotFound();
         }
+
     }
 }
+
+
