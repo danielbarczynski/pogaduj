@@ -21,14 +21,13 @@ namespace pogaduj.Hubs
 
         public Task LeaveRoom(string roomName)
         {
-            var currentUser = Context.User.Identity.Name;
             return Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
         }
 
         public Task JoinMessage(string roomName)
         {
             var currentUser = Context.User.Identity.Name;       
-            return Clients.Group(roomName).SendAsync("OnMessageSent", "System: ", $"Użytkownik {currentUser} dołączył do pokoju");
+            return Clients.Group(roomName).SendAsync("OnMessageSent", "System", $"Użytkownik {currentUser} dołączył do pokoju");
         }
 
         public Task LeaveMessage(string roomName)

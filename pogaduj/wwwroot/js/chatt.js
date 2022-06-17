@@ -46,8 +46,8 @@ document.getElementById("joinRoom").addEventListener("click", (event) => {
 
 document
   .getElementById("leaveRoom")
-  .addEventListener(
-    "click",
-    connection.invoke("LeaveRoom", id),
-    connection.invoke("LeaveMessage", id)
-  );
+  .addEventListener("click", () => {
+    connection.invoke("LeaveRoom", id);
+    connection.invoke("LeaveMessage", id);
+  });
+  
