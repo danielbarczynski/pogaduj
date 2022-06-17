@@ -30,9 +30,11 @@ namespace pogaduj.Controllers
 
         public IActionResult Index(int id, RoomModel roomModel)
         {
+            id++;
             //RoomModel roomModel = new();
             _applicationDbContext.Rooms.ToList();
             var room = _applicationDbContext.Rooms.Find(id);
+
             if(room == null)
             {
                 return NotFound();
@@ -41,26 +43,52 @@ namespace pogaduj.Controllers
             if (room.User1 == 0 && room.User2 == 0)
             {
                 room.User1 = 1;
-                _applicationDbContext.Rooms.Update(roomModel);
-                _applicationDbContext.Rooms.Remove(roomModel);
-                _applicationDbContext.SaveChanges();
-                return View(room);
             }
             else if (room.User1 == 1 && room.User2 == 0)
             {
                 room.User2 = 1;
-                _applicationDbContext.Rooms.Update(roomModel);
-                _applicationDbContext.Rooms.Remove(roomModel);
-                _applicationDbContext.SaveChanges();
-                return View(room);
             }
             else if (room.User1 == 1 && room.User2 == 1)
             {
-                return RedirectToAction("Index", new { id = id + 1, roomModel = roomModel });
+                return RedirectToAction("Index", new { id = id, roomModel = roomModel });
             }
-            return NotFound();
+
+            _applicationDbContext.Rooms.Update(roomModel);
+            _applicationDbContext.Rooms.Remove(roomModel);
+            _applicationDbContext.SaveChanges();
+            return View(room);
         }
 
+        public IActionResult Leave(int id, RoomModel roomModel)
+        {
+           // id++;
+            _applicationDbContext.Rooms.ToList();
+            var room = _applicationDbContext.Rooms.Find(id);
+
+            if(room == null)
+            {
+               return RedirectToAction("Index", "Home");
+            }
+
+            if (room.User1 == 1 && room.User2 == 0)
+            {
+                room.User1 = 0;           
+            }
+            else if (room.User1 == 0 && room.User2 == 1)
+            {
+                room.User2 = 0;
+            }
+            if (room.User1 == 1 && room.User2 == 1)
+            {
+                room.User1 = 0;
+            }
+            
+            _applicationDbContext.Rooms.Update(roomModel);
+            _applicationDbContext.Rooms.Remove(roomModel);
+            _applicationDbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
 
