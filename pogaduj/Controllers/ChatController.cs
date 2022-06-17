@@ -22,8 +22,14 @@ namespace pogaduj.Controllers
             {
                 return NotFound();
             }
+            if (_applicationDbContext.Rooms.Any(x=>x.User1 == false && x.User2 == false))
+                {
+                room.User1 = true;
+                return View(room);
+            }
+
             //var messages = _repository.GetAll();
-            return View(room);
+            return View();
         }
     }
 }
