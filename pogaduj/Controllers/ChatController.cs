@@ -28,25 +28,34 @@ namespace pogaduj.Controllers
         //    return View(room);
         //}
 
-        public IActionResult Index(int id)
+        public IActionResult Index(int id, RoomModel roomModel)
         {
             id++;
+            //RoomModel roomModel = new();
             _applicationDbContext.Rooms.ToList();
             var room = _applicationDbContext.Rooms.Find(id);
+            if(room == null)
+            {
+                return NotFound();
+            }    
 
-            if (room.User1 == false && room.User2 == false)
+            if (room.User1 == 0 && room.User2 == 0)
             {
-                room.User1 = true;
+                room.User1 = 1;
+                _applicationDbContext.Rooms.Update(roomModel);
+                _applicationDbContext.SaveChanges();
                 return View(room);
             }
-            else if (room.User1 == true && room.User2 == false)
+            else if (room.User1 == 1 && room.User2 == 0)
             {
-                room.User2 = true;
+                room.User2 = 1;
+                _applicationDbContext.Rooms.Update(roomModel);
+                _applicationDbContext.SaveChanges();
                 return View(room);
             }
-            else if (room.User1 == true && room.User2 == true)
+            else if (room.User1 == 1 && room.User2 == 1)
             {
-                return RedirectToAction("Index", new { id });
+                return RedirectToAction("Index", new { id = id + 1, roomModel = roomModel });
             }
             return NotFound();
         }
