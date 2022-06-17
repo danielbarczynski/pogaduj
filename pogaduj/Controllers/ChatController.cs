@@ -30,7 +30,6 @@ namespace pogaduj.Controllers
 
         public IActionResult Index(int id, RoomModel roomModel)
         {
-            id++;
             //RoomModel roomModel = new();
             _applicationDbContext.Rooms.ToList();
             var room = _applicationDbContext.Rooms.Find(id);
@@ -43,6 +42,7 @@ namespace pogaduj.Controllers
             {
                 room.User1 = 1;
                 _applicationDbContext.Rooms.Update(roomModel);
+                _applicationDbContext.Rooms.Remove(roomModel);
                 _applicationDbContext.SaveChanges();
                 return View(room);
             }
@@ -50,6 +50,7 @@ namespace pogaduj.Controllers
             {
                 room.User2 = 1;
                 _applicationDbContext.Rooms.Update(roomModel);
+                _applicationDbContext.Rooms.Remove(roomModel);
                 _applicationDbContext.SaveChanges();
                 return View(room);
             }
