@@ -47,6 +47,10 @@ namespace pogaduj.Controllers
             {
                 room.User2 = 1;
             }
+            else if (room.User1 == 0 && room.User2 == 1)
+            {
+                room.User1 = 1;
+            }
             else if (room.User1 == 1 && room.User2 == 1)
             {
                 return RedirectToAction("Index", new { id = id, roomModel = roomModel });
@@ -58,7 +62,7 @@ namespace pogaduj.Controllers
             return View(room);
         }
 
-        public IActionResult Leave(RoomModel roomModel2, int id)
+        public IActionResult Leave(int id)
         {
             id++;
             _applicationDbContext.Rooms.ToList();
@@ -82,8 +86,8 @@ namespace pogaduj.Controllers
                 roomModel.User1 = 0;
             }
             
-            _applicationDbContext.Rooms.Update(roomModel2);
-            _applicationDbContext.Rooms.Remove(roomModel2);
+            _applicationDbContext.Rooms.Update(roomModel);
+            //_applicationDbContext.Rooms.Remove(roomModel2);
             _applicationDbContext.SaveChanges();
 
             return RedirectToAction("Index", "Home");
