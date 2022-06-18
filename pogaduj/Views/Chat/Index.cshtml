@@ -41,12 +41,9 @@
 
 </div>
 <br />
-
 @{
-    var id = Context.Request.RouteValues["id"];
-    var id2 = Convert.ToInt32(id);
-    var newId = id2 - 1;
+    var room = Model.Id - 1;
 }
-<a asp-controller="Chat" asp-action="Leave" asp-route-id="@id"><input type="button" class="btn btn-danger" id="leaveRoom" value="Opuść pokój"/></a> 
+<a asp-controller="Chat" asp-action="Leave" asp-route-id="@room"><input type="button" class="btn btn-danger" id="leaveRoom" value="Opuść pokój"/></a> 
 <script src="~/lib/aspnet-signalr/signalr.js"></script>
 <script src="~/js/chatt.js"></script>

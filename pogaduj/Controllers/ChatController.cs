@@ -31,7 +31,6 @@ namespace pogaduj.Controllers
         public IActionResult Index(int id, RoomModel roomModel)
         {
             id++;
-            //RoomModel roomModel = new();
             _applicationDbContext.Rooms.ToList();
             var room = _applicationDbContext.Rooms.Find(id);
 
@@ -59,32 +58,32 @@ namespace pogaduj.Controllers
             return View(room);
         }
 
-        public IActionResult Leave(int id, RoomModel roomModel)
+        public IActionResult Leave(RoomModel roomModel2, int id)
         {
-           // id++;
+            id++;
             _applicationDbContext.Rooms.ToList();
-            var room = _applicationDbContext.Rooms.Find(id);
+            var roomModel = _applicationDbContext.Rooms.Find(id);
 
-            if(room == null)
+            if (roomModel == null)
             {
-               return RedirectToAction("Index", "Home");
+                return NotFound();
             }
 
-            if (room.User1 == 1 && room.User2 == 0)
+            if (roomModel.User1 == 1 && roomModel.User2 == 0)
             {
-                room.User1 = 0;           
+                roomModel.User1 = 0;           
             }
-            else if (room.User1 == 0 && room.User2 == 1)
+            else if (roomModel.User1 == 0 && roomModel.User2 == 1)
             {
-                room.User2 = 0;
+                roomModel.User2 = 0;
             }
-            if (room.User1 == 1 && room.User2 == 1)
+            else if (roomModel.User1 == 1 && roomModel.User2 == 1)
             {
-                room.User1 = 0;
+                roomModel.User1 = 0;
             }
             
-            _applicationDbContext.Rooms.Update(roomModel);
-            _applicationDbContext.Rooms.Remove(roomModel);
+            _applicationDbContext.Rooms.Update(roomModel2);
+            _applicationDbContext.Rooms.Remove(roomModel2);
             _applicationDbContext.SaveChanges();
 
             return RedirectToAction("Index", "Home");
