@@ -1,11 +1,23 @@
-﻿<div class="text-center">
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<div class="text-center">
     <h1>Witaj na pogaduj.pl!</h1>
-    @{
+@*    @{
         Random random = new Random();
         var newId = random.Next(1, 4);  
-    }
+    }*@
     @*<p class="mt-4"><a asp-controller="Chat" asp-action="Index" asp-route-id="@newId" class="btn btn-primary"> Dołącz do pokoju </a> </p> *@
-    <p class="mt-4"><a asp-controller="Chat" asp-action="Index" asp-route-id="0" class="btn btn-primary"> Dołącz do pokoju </a> </p> 
+         @if (SignInManager.IsSignedIn(User))
+        {
+        <p class="mt-4"><a asp-controller="Chat" asp-action="Index" asp-route-id="0" class="btn btn-primary"> Dołącz do pokoju </a> </p>
+    }
+    else
+    {
+          <div class="text-center" style="font-size: 25px;">
+                <a style="color: red;" asp-area="Identity" asp-page="/Account/Login">Zaloguj się</a> aby móc dołączyć do pokoju
+            </div>
+    }
 </div>
 
 <script src="~/js/chat.js"></script>

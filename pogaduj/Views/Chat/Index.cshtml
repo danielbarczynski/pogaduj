@@ -9,12 +9,9 @@
         <div class="card-body p-2 overflow-auto" id="messages" style="max-height: 690px">
                @if (SignInManager.IsSignedIn(User))
             {
-                <div class="px-4" style="font-size: 20px; color: gray;">Połączono z użytkownikiem, przywitaj się!</div>
+                <div class="px-4" style="font-size: 20px; color: gray;">Bądź miły, przywitaj się!</div>
             }
-            else
-            {
-                <div class="px-4" style="font-size: 20px; color: gray;">Nie połączono z nikim</div>
-            }
+
          @*   @foreach (var message in Model)
             {
                 <div class="p-2">@message.Username: @message.Message</div>
