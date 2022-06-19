@@ -8,6 +8,14 @@ const connection = new signalR.HubConnectionBuilder()
 
 const formElement = document.getElementById("message-form");
 
+window.addEventListener("beforeunload", (event) => {
+  event.preventDefault();
+  event.returnValue = "Ok";
+  if(confirm("Jestes pewien?") == true) {
+  window.location = `/{Chat}/{Leave}/${id}`;
+  }
+});
+
 // Receiving messages
 
 connection.on("OnMessageSent", (user, message) => {
