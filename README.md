@@ -1,6 +1,6 @@
 # pogaduj
 
-Projekt na zajęcia "Programowanie Aplikacji Backendowych". Jest to aplikacja interaktywnego czatu, gdzie użytkownicy mogą losować rozmówcę i z nim pisać lub tworzyć pokoje i zapraszać do nich inne osoby. Inspirowane na https://6obcy.org/
+Projekt na zajęcia "Programowanie Aplikacji Backendowych". Jest to aplikacja interaktywnego czatu, gdzie użytkownicy mogą losować rozmówcę i z nim porozmawiać w pełni prywatnie (rozmowy nie są nigdzie zapisywanie). Inspirowane na https://6obcy.org/
 
 Harmonogram:
 
@@ -12,12 +12,12 @@ Harmonogram:
 6. Funkcja walidacji danych X
 7. Funkcja autoryzacji użytkowników X
 8. Migracja danych X
-9. Funkcja łączenia się z bazą danych X
-10. Seedowanie danych
-11. System rang użytkowników
-12. Funkcja losowania rozmówcy
-13. Funkcja tworzenia pokoju chatu
-14. Funkcja zapraszania użytkowników do pokoju chatu
-15. Funkcja zabezpieczenia hasłem pokoju chatu
-16. Udostępnienie aplikacji na azure
+9. Funkcja łączenia się z bazą danych (entity framework) X
+10. Funkcja dołączania do pokoju X
+11. Algorytm znajdowania wolnego pokoju X
+12. Algorytm zwalniania pokoju po opuszczeniu X
+13. Funkcja wysyłania wiadomości tylko do użytkowników w danym pokoju X
+14. Informowanie o dołączeniu danego użytkownika do pokoju X
+15. Informowanie o opuszczeniu pokoju przez danego użytkownika X
+16. Udostępnienie aplikacji na azure X (zaimplementowane, anulowane przez wysokie opłaty)
 
