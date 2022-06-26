@@ -1,6 +1,10 @@
 # pogaduj
 
-Projekt na zajęcia "Programowanie Aplikacji Backendowych". Jest to aplikacja interaktywnego czatu, gdzie użytkownicy mogą losować rozmówcę i z nim porozmawiać w pełni prywatnie (rozmowy nie są nigdzie zapisywanie). Inspirowane na https://6obcy.org/
+Projekt na zajęcia "Programowanie Aplikacji Backendowych". Jest to aplikacja interaktywnego czatu, gdzie użytkownicy mogą wylosować rozmówcę i z nim porozmawiać w pełni prywatnie (rozmowy nie są nigdzie zapisywanie). Inspirowane na https://6obcy.org/
+
+Krótki opis działania:
+
+Aby móc dołączyć do pokoju czatu, należy się najpierw zalogować bądź założyć konto. Po dołączeniu do pokoju "n" w bazie danych zapełnia się miejsce, informując algorytm, że dany pokój jest dostępny dla jeszcze jednej osoby. Kiedy dołączy jeszcze jedna osoba, pokój się zamyka i kolejna osoba dołączy do pokoju "n + 1". Jeśli jakiś rozmówca opuści pokój miejsce się zwalnia dla kolejnego rozmówcy, więc wystarczy tak naprawdę poczekać, aż kolejna osoba dołączy. Użytkownicy są też zabezpieczani przed przypadkowym opuszczeniem pokoju i utraceniem rozmówcy/wiadomości przez event "preventdeafult". Jak już wspomniałem wyżej, wiadomości nie są nigdzie zapisywane.
 
 Harmonogram:
 
