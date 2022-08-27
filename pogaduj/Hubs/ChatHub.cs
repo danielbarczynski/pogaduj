@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using pogaduj.Controllers;
 using pogaduj.Data;
 using pogaduj.Models;
 using pogaduj.Repository;
