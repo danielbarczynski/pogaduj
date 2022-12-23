@@ -1,4 +1,6 @@
-# pogaduj
+# pogaduj  
+
+!["image"](https://pbs.twimg.com/media/Fkrf5gRXkAAAjKF?format=png&name=small)
 
 Projekt na zajęcia "Programowanie Aplikacji Backendowych". Jest to aplikacja interaktywnego czatu, gdzie użytkownicy mogą wylosować rozmówcę i z nim porozmawiać w pełni prywatnie (rozmowy nie są nigdzie zapisywanie). Chciałbym zaznaczyć, że jest to kontynuacja porzuconego przeze mnie projektu, także pierwszy commit jest dość duży, bo składa się na niego kilka commitów z poprzedniego projektu. Inspirowane na https://6obcy.org/
 
